@@ -1,6 +1,6 @@
 require("dotenv").config({path:"../.env"})
 const express=require("express")
-const rotas = require("./domain/pecas/routes/pecasRoutes")
+const rotas = require("./domain/pecas/routes/routesDriveData")
 
 const app=express()
 const cors=require("cors")

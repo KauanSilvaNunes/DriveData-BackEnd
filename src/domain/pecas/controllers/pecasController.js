@@ -11,14 +11,6 @@ class PecasController{
         }
     }
 
-    async buscarManutencoes(req,res){
-        try{
-            const dados= await pecasRepository.buscarManutencoes();
-            res.status(200).json(dados)
-        }catch(erro){
-            res.status(500).json({erro:"Erro ao buscar manutenções"})
-        }
-    }
 }
 
 module.exports= new PecasController(); 
