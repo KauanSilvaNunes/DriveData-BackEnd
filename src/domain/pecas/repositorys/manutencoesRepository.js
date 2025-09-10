@@ -22,5 +22,19 @@ class manutencoesRepository {
     const [result] = await db.query("INSERT INTO manutencao (ID_automovel, ID_pecas, data_maxima, quilometragem_maxima, quilometragem_instalacao, data_instalacao) VALUES (?,?,?,?,?,?)",[manutencao.ID_automovel,manutencao.ID_pecas,manutencao.data_maxima,manutencao.quilometragem_maxima,manutencao.quilometragem_instalacao,manutencao.data_instalacao]);
     return {id: result.insertId, ...manutencao};
   }
+
+  async deletarManutencao(id) {
+    const [result] = await db.query("DELETE FROM manutencao where id = ?",[id]);
+
+    if (result.affectedRows ===0){
+      return null
+    }
+
+    return true;
+
+  }
+
 }
+
+
 module.exports = new manutencoesRepository();

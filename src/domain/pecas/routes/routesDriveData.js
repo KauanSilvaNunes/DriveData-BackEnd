@@ -7,6 +7,7 @@ const automovelController = require("../controllers/automovelController");
 
 router.get("/automoveis",automovelController.buscarAutomovel)
 router.get("/pecas",pecasController.todasPecas)
-router.get("/",manutencoesController.buscarManutencoes)
+router.get("/manutencoes",manutencoesController.buscarManutencoes)
 router.post("/manutencoes",manutencoesController.criarManutencao)
+router.delete("/manutencoes/:id",manutencoesController.deletarManutencao)
 module.exports = router

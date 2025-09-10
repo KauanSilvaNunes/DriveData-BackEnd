@@ -20,6 +20,25 @@ class manutencoesController{
         }
     }
 
+    async deletarManutencao(req,res){
+        try{
+            const id = parseInt(req.params.id);
+            if (isNaN(id)) {
+                return res.status(400).json({ mensagem: "ID inválido" });
+              }
+            const resultado = await manutencoesRepository.deletarManutencao(id)
+            
+            if(!resultado){
+                return res
+                 .status(404)
+                 .json({mensagem:"Manutenção não encontrada para deletar!"})
+            }
+            return res.status(200).json({mensagem:"Manutenção deletada com sucesso!"})
+        }catch(err){
+            return res.status(500).json({mensagem: "Erro ao deletar manutenção"})
+        }
+    }
+
 }
 
 module.exports= new manutencoesController(); 
