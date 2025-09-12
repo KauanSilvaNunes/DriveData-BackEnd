@@ -9,6 +9,18 @@ class manutencoesController{
             res.status(500).json({erro:"Erro ao buscar manutenções"})
         }
     }
+    
+
+    async buscarUltimasManutencoesPorID(req,res){
+        try{
+            const id = req.params.id
+            const dados= await manutencoesRepository.buscarUltimasManutencoesPorID(id);
+            res.status(200).json(dados)
+        }catch(erro){
+            res.status(500).json({erro:"Erro ao buscar manutenções"})
+        }
+    }
+    
 
     async criarManutencao(req,res){
         try{

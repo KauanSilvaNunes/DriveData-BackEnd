@@ -7,6 +7,11 @@ class AutomoveisRepository {
         return row;
     }
 
+    async buscarAutomoveisPorID(id) {
+        const [row] = await db.query("Select * from automovel WHERE ID_Autenticacao=?;",[id]);
+        return row[0];
+    }
+
 
 }
 
