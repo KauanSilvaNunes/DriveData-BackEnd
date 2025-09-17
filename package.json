@@ -16,5 +16,13 @@
     "express": "^5.1.0",
     "express-session": "^1.18.2",
     "mysql2": "^3.14.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KauanSilvaNunes/DriveData-BackEnd.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KauanSilvaNunes/DriveData-BackEnd/issues"
+  },
+  "homepage": "https://github.com/KauanSilvaNunes/DriveData-BackEnd#readme"
 }

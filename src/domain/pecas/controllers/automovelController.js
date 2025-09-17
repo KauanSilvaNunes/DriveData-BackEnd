@@ -22,6 +22,16 @@ class automovelController{
         }
     }
 
+     async adicionarAutomovel(req,res){
+        try{
+            const date= req.body;
+            const dado= await automovelRepository.adicionarAutomovel(date);
+            res.status(201).json(dado);
+        }catch(erro_criar){
+            res.status(500).json({erro:"Erro ao adicionar um automovel:",erro_criar})
+        }
+    }
+
 }
 
 module.exports= new automovelController();

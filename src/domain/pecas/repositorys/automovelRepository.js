@@ -12,6 +12,10 @@ class AutomoveisRepository {
         return row[0];
     }
 
+     async adicionarAutomovel (automovel) {
+    const [result] = await db.query("INSERT INTO automovel (ID_Autenticacao,nome_automovel,ID_Icone,quilometragem) VALUES (?,?,?,?)",[automovel.ID_Autenticacao,automovel.nome_automovel,automovel.ID_Icone,automovel.quilometragem]);
+    return {id: result.insertId, ...automovel};
+  }
 
 }
 
