@@ -32,6 +32,25 @@ class automovelController{
         }
     }
 
+    async atualizarAutomovel(req, res) {
+  try {
+    const id = parseInt(req.params.id);
+    const dados = req.body;
+
+    const automovel = { ...dados, ID_Automovel: id };
+
+    const atualizado = await automovelRepository.atualizarAutomovel(automovel);
+
+    if (!atualizado) {
+      return res.status(404).json({ erro: "Automóvel não encontrado" });
+    }
+
+    res.status(200).json(atualizado);
+  } catch (erro) {
+    res.status(500).json({ erro: "Erro ao atualizar automóvel", detalhe: erro });
+  }
+}
+
 }
 
 module.exports= new automovelController();

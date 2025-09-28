@@ -17,6 +17,18 @@ class AutomoveisRepository {
     return {id: result.insertId, ...automovel};
   }
 
+  async atualizarAutomovel(automovel) {
+  const [result] = await db.query(
+    `UPDATE automovel 
+     SET nome_automovel = ?, ID_Icone = ?, quilometragem = ? 
+     WHERE ID_Automovel = ?`,
+    [automovel.nome_automovel, automovel.ID_Icone, automovel.quilometragem, automovel.ID_Automovel]
+  );
+
+  return result.affectedRows > 0 
+    ? { ...automovel } 
+    : null;
+}
 }
 
 module.exports= new AutomoveisRepository();
