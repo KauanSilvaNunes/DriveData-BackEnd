@@ -21,8 +21,8 @@ class AutomoveisRepository {
   const [result] = await db.query(
     `UPDATE automovel 
      SET nome_automovel = ?, ID_Icone = ?, quilometragem = ? 
-     WHERE ID_Automovel = ?`,
-    [automovel.nome_automovel, automovel.ID_Icone, automovel.quilometragem, automovel.ID_Automovel]
+     WHERE ID = ?`,
+    [automovel.nome_automovel, automovel.ID_Icone, automovel.quilometragem, automovel.ID]
   );
 
   return result.affectedRows > 0 
