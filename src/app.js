@@ -15,9 +15,6 @@ app.use(
 
 app.use(express.json());
 
-const { getLogin } = require("./domain/authentication/controller/authController");
-const rotas = require("./domain/pecas/routes/routesDriveData");
-
 app.use(
   session({
     secret: "segredo-simples",
@@ -26,6 +23,39 @@ app.use(
     cookie: { secure: false },
   })
 );
+
+
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.error("Erro ao destruir a sessão:", err);
+      return res.status(500).json({ mensagem: "Erro ao fazer logout" });
+    }
+
+    // Remove o cookie da sessão
+    res.clearCookie("connect.sid", {
+      path: "/",
+      httpOnly: true,
+      sameSite: "lax", // mesmo valor usado no login
+      secure: false    // true se for https
+    });
+
+    res.status(200).json({ mensagem: "Logout realizado com sucesso!" });
+  });
+});
+
+app.get("/check-auth", (req, res) => {
+  if (req.session && req.session.user) {
+    res.json({ authenticated: true });
+  } else {
+    res.json({ authenticated: false });
+  }
+});
+
+const { getLogin } = require("./domain/authentication/controller/authController");
+const rotas = require("./domain/pecas/routes/routesDriveData");
+
+
 
 app.post("/login", getLogin);
 
