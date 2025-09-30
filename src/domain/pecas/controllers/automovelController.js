@@ -34,10 +34,7 @@ class automovelController{
 
     async atualizarAutomovel(req, res) {
   try {
-    const id = parseInt(req.params.id);
-    const dados = req.body;
-
-    const automovel = { ...dados, ID_Automovel: id };
+    const automovel = req.body;
 
     const atualizado = await automovelRepository.atualizarAutomovel(automovel);
 

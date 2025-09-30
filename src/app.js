@@ -8,7 +8,7 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin:"http://localhost:5173",
     credentials: true,
   })
 );
@@ -29,11 +29,9 @@ app.use(
 
 app.post("/login", getLogin);
 
-// Rotas
 app.use("/", authMiddleware, rotas);
 
-// Inicia leitura da Serial do Arduino
-require("./domain/pecas/services/arduinoReader");
+// require("./domain/pecas/services/arduinoReader");
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
